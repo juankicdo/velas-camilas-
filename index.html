@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo de invierno</title>
+<style>
+  body{margin:0;font-family:Georgia,serif;--c1:#0e2238;--c2:#1b3d5e;background:#0e2238;color:#eef5fb;min-height:100vh}
+  /* Fondo fijo que cambia con el scroll (funciona también en iPhone) */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(var(--c1),var(--c2))}
+  header{text-align:center;padding:48px 16px 16px}
+  h1{margin:0;font-size:2.4rem;font-weight:normal;letter-spacing:.02em}
+  header p{opacity:.75;margin:8px 0 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;max-width:1000px;margin:32px auto;padding:0 16px;position:relative;z-index:2}
+  .card{background:#f6fafd;color:#16283a;border-radius:10px;padding:18px;transition:transform .2s}
+  .card:hover{transform:translateY(-4px)}
+  .card .img{height:120px;border-radius:6px;background:#cfe0ee;margin-bottom:12px}
+  .card h3{margin:0 0 4px;font-size:1.1rem}
+  .card span{font-size:.95rem;opacity:.7}
+
+  /* ===== COPIA DESDE AQUÍ: NIEVE (CSS) ===== */
+  #nieve{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  #nieve-btn{position:fixed;right:16px;bottom:16px;z-index:10;border:0;border-radius:20px;padding:10px 16px;background:#fff;color:#16283a;cursor:pointer;font:inherit;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  /* ===== HASTA AQUÍ (CSS) ===== */
+
+  /* ===== COPIA DESDE AQUÍ: MUÑEQUITOS (CSS) ===== */
+  #amigos{position:fixed;left:12px;bottom:8px;z-index:5;display:flex;gap:6px;align-items:flex-end}
+  .amigo{position:relative;font-size:2.6rem;line-height:1;cursor:pointer;user-select:none;background:none;border:0;padding:0;transition:transform .2s}
+  .amigo:hover{transform:scale(1.15) rotate(-6deg)}
+  .amigo.salta{animation:salto .5s}
+  @keyframes salto{40%{transform:translateY(-22px)}}
+  .globo{position:absolute;bottom:110%;left:0;min-width:120px;max-width:170px;background:#fff;color:#16283a;font:.8rem/1.3 Georgia,serif;padding:8px 10px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.3);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none;text-align:left}
+  .globo::after{content:"";position:absolute;top:100%;left:18px;border:7px solid transparent;border-top-color:#fff}
+  .globo.ver{opacity:1;transform:none}
+  @media(max-width:600px){#amigos .amigo:nth-child(n+3){display:none}.amigo{font-size:2.1rem}}
+  /* ===== HASTA AQUÍ (MUÑEQUITOS CSS) ===== */
+
+  /* ===== COPIA DESDE AQUÍ: MUÑECO GRANDE (CSS) ===== */
+  #olaf{position:fixed;right:12px;bottom:64px;z-index:5;width:150px;cursor:pointer;animation:rebote 2.4s ease-in-out infinite}
+  #olaf svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+  #olaf .brazo{transform-origin:112px 98px;animation:saludo .7s ease-in-out infinite alternate}
+  #olaf.feliz .brazo{animation-duration:.25s}
+  @keyframes saludo{from{transform:rotate(-28deg)}to{transform:rotate(14deg)}}
+  @keyframes rebote{50%{transform:translateY(-6px)}}
+  #olaf-globo{position:absolute;bottom:100%;right:10px;width:150px;background:#fff;color:#16283a;font:.85rem/1.3 Georgia,serif;padding:8px 10px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.3);text-align:center;transition:opacity .3s}
+  #olaf-globo::after{content:"";position:absolute;top:100%;right:28px;border:7px solid transparent;border-top-color:#fff}
+  @media(max-width:600px){#olaf{width:105px}#olaf-globo{width:120px;font-size:.75rem}body{padding-bottom:170px}}
+  @media(prefers-reduced-motion:reduce){#olaf,#olaf .brazo{animation:none}}
+  /* ===== HASTA AQUÍ (MUÑECO GRANDE CSS) ===== */
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Catálogo de invierno</h1>
+  <p>Mueve el mouse sobre la página y haz clic para soltar más nieve</p>
+</header>
+
+<main class="grid">
+  <div class="card"><div class="img"></div><h3>Set navideño 1</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 2</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 3</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 4</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 5</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 6</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 7</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 8</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 9</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 10</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 11</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 12</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 13</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 14</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 15</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 16</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 17</h3><span>$20.000</span></div>
+  <div class="card"><div class="img"></div><h3>Set navideño 18</h3><span>$20.000</span></div>
+</main>
+
+<!-- ===== COPIA DESDE AQUÍ: NIEVE (HTML + JS) ===== -->
+<canvas id="nieve"></canvas>
+<button id="nieve-btn" type="button">❄ Nieve: on</button>
+<script>
+(function(){
+  var c = document.getElementById('nieve'), ctx = c.getContext('2d');
+  var btn = document.getElementById('nieve-btn');
+  var flakes = [], mouse = {x:-999,y:-999}, on = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COUNT = innerWidth < 600 ? 60 : 130;
+
+  function resize(){ c.width = innerWidth; c.height = innerHeight; }
+  addEventListener('resize', resize); resize();
+
+  function flake(x, y){
+    return { x: x != null ? x : Math.random()*c.width,
+             y: y != null ? y : Math.random()*c.height,
+             r: Math.random()*2.8 + 1,
+             vy: Math.random()*0.8 + 0.4,
+             sway: Math.random()*Math.PI*2,
+             vx: 0 };
+  }
+  for (var i = 0; i < COUNT; i++) flakes.push(flake());
+
+  addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; });
+  // en celular: la nieve se aparta del dedo
+  function dedo(e){ var t = e.touches[0]; if (t){ mouse.x = t.clientX; mouse.y = t.clientY; } }
+  addEventListener('touchstart', dedo, { passive:true });
+  addEventListener('touchmove', dedo, { passive:true });
+  addEventListener('touchend', function(){ mouse.x = mouse.y = -999; }, { passive:true });
+  addEventListener('click', function(e){
+    for (var i = 0; i < 25; i++){
+      var f = flake(e.clientX, e.clientY);
+      f.vx = (Math.random()-0.5)*5; f.vy = Math.random()*2 + 0.5; f.burst = true;
+      flakes.push(f);
+    }
+  });
+  btn.addEventListener('click', function(e){
+    e.stopPropagation(); on = !on;
+    c.style.display = on ? 'block' : 'none';
+    btn.textContent = '❄ Nieve: ' + (on ? 'on' : 'off');
+  });
+
+  function draw(){
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.fillStyle = 'rgba(255,255,255,.9)';
+    for (var i = flakes.length - 1; i >= 0; i--){
+      var f = flakes[i];
+      f.sway += 0.015;
+      // el mouse empuja los copos cercanos
+      var dx = f.x - mouse.x, dy = f.y - mouse.y, d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 90 && d > 0){ f.vx += (dx/d) * 0.6; }
+      f.vx *= 0.95;
+      f.x += Math.sin(f.sway)*0.4 + f.vx;
+      f.y += f.vy;
+      if (f.y > c.height + 5){
+        if (f.burst){ flakes.splice(i, 1); continue; }
+        f.y = -5; f.x = Math.random()*c.width;
+      }
+      if (f.x > c.width + 5) f.x = -5;
+      if (f.x < -5) f.x = c.width + 5;
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.2832); ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  if (reduce){ on = false; c.style.display = 'none'; btn.textContent = '❄ Nieve: off'; }
+  draw();
+})();
+</script>
+<!-- ===== HASTA AQUÍ (HTML + JS) ===== -->
+
+<!-- ===== COPIA DESDE AQUÍ: MUÑEQUITOS (HTML + JS) ===== -->
+<div id="amigos">
+  <button class="amigo" type="button" data-dice='["¡Ho ho ho! Mira las ofertas de hoy 🎁","¡Feliz Navidad!","¿Ya hiciste tu lista de regalos?"]'>🎅<div class="globo"></div></button>
+  <button class="amigo" type="button" data-dice='["¡Hola! Soy Olaf... casi 😄","Me derrito por estos precios","¡Abrígate bien!"]'>⛄<div class="globo"></div></button>
+  <button class="amigo" type="button" data-dice='["Rudolph aprueba este catálogo 🔴","¡Entrega rápida como un reno!","Los regalos vuelan por aquí"]'>🦌<div class="globo"></div></button>
+  <button class="amigo" type="button" data-dice='["¡Más luces, más magia! ✨","Aquí hay un regalo para ti","Tu árbol necesita algo nuevo"]'>🎄<div class="globo"></div></button>
+</div>
+<script>
+(function(){
+  var amigos = document.querySelectorAll('#amigos .amigo');
+  function hablar(a, i){
+    var frases = JSON.parse(a.dataset.dice), g = a.querySelector('.globo');
+    g.textContent = frases[i != null ? i : Math.floor(Math.random()*frases.length)];
+    g.classList.add('ver');
+    clearTimeout(a._t);
+    a._t = setTimeout(function(){ g.classList.remove('ver'); }, 3500);
+  }
+  amigos.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.stopPropagation(); // no suelta nieve extra al tocar un muñeco
+      a.classList.remove('salta'); void a.offsetWidth; a.classList.add('salta');
+      hablar(a);
+    });
+  });
+  // saludan solos, uno a la vez, cada pocos segundos
+  var turno = 0;
+  setTimeout(function(){ hablar(amigos[0], 0); }, 1200);
+  setInterval(function(){
+    turno = (turno + 1) % amigos.length;
+    hablar(amigos[turno]);
+  }, 6000);
+})();
+</script>
+<!-- ===== HASTA AQUÍ (MUÑEQUITOS HTML + JS) ===== -->
+
+<!-- ===== COPIA DESDE AQUÍ: MUÑECO GRANDE (HTML + JS) ===== -->
+<div id="olaf" title="¡Haz clic!">
+  <div id="olaf-globo">¡Hola! Bienvenido ☃</div>
+  <svg viewBox="0 0 170 230" aria-hidden="true">
+    <!-- cuerpo -->
+    <circle cx="80" cy="180" r="46" fill="#fff"/>
+    <circle cx="80" cy="112" r="34" fill="#fff"/>
+    <circle cx="80" cy="58" r="26" fill="#fff"/>
+    <!-- brazo izquierdo fijo -->
+    <path d="M48 108 L12 130 M22 124 L14 140 M22 124 L8 120" stroke="#6b4423" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- sombrero -->
+    <rect x="52" y="30" width="56" height="7" rx="3" fill="#1d1d2b"/>
+    <rect x="61" y="6" width="38" height="28" rx="3" fill="#1d1d2b"/>
+    <rect x="61" y="24" width="38" height="6" fill="#c0392b"/>
+    <!-- cara -->
+    <circle cx="71" cy="52" r="3.2" fill="#1d1d2b"/>
+    <circle cx="89" cy="52" r="3.2" fill="#1d1d2b"/>
+    <path d="M80 58 L104 63 L80 66 Z" fill="#f07d1a"/>
+    <path d="M68 68 Q80 78 92 68" stroke="#1d1d2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="62" cy="62" r="4" fill="#ffb3b3" opacity=".7"/>
+    <circle cx="98" cy="62" r="4" fill="#ffb3b3" opacity=".7"/>
+    <!-- bufanda -->
+    <rect x="52" y="80" width="56" height="12" rx="6" fill="#c0392b"/>
+    <rect x="94" y="86" width="12" height="34" rx="5" fill="#c0392b"/>
+    <rect x="94" y="100" width="12" height="5" fill="#fff" opacity=".6"/>
+    <!-- botones -->
+    <circle cx="80" cy="112" r="3.4" fill="#1d1d2b"/>
+    <circle cx="80" cy="130" r="3.4" fill="#1d1d2b"/>
+    <circle cx="80" cy="168" r="3.8" fill="#1d1d2b"/>
+    <circle cx="80" cy="186" r="3.8" fill="#1d1d2b"/>
+    <!-- brazo que saluda -->
+    <g class="brazo">
+      <path d="M112 98 L156 62 M142 72 L146 52 M142 72 L160 76" stroke="#6b4423" stroke-width="4" stroke-linecap="round" fill="none"/>
+    </g>
+  </svg>
+</div>
+<script>
+(function(){
+  // --- Fondo que cambia al bajar: amanecer frío -> noche -> aurora -> atardecer ---
+  var etapas = [
+    { c1:[14,34,56],  c2:[27,61,94],  msg:"¡Hola! Bienvenido ☃" },
+    { c1:[38,28,84],  c2:[78,48,120], msg:"¡Sigue bajando, hay más!" },
+    { c1:[6,8,28],    c2:[20,22,58],  msg:"Ya es de noche… ¡y siguen las ofertas! 🌙" },
+    { c1:[10,62,66],  c2:[36,120,104],msg:"¡Mira! Una aurora ✨" },
+    { c1:[110,48,70], c2:[222,128,84],msg:"¡Gracias por visitarnos! 🎁" }
+  ];
+  var olaf = document.getElementById('olaf'), globo = document.getElementById('olaf-globo');
+  var ultima = -1, root = document.body;
+
+  function mezcla(a, b, t){
+    return a.map(function(v, i){ return Math.round(v + (b[i] - v) * t); }).join(',');
+  }
+  function actualizar(){
+    var max = document.documentElement.scrollHeight - innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    var pos = p * (etapas.length - 1);
+    var i = Math.min(etapas.length - 2, Math.floor(pos)), t = pos - i;
+    root.style.setProperty('--c1', 'rgb(' + mezcla(etapas[i].c1, etapas[i+1].c1, t) + ')');
+    root.style.setProperty('--c2', 'rgb(' + mezcla(etapas[i].c2, etapas[i+1].c2, t) + ')');
+    var cercana = Math.round(pos);
+    if (cercana !== ultima){ ultima = cercana; globo.textContent = etapas[cercana].msg; }
+  }
+  addEventListener('scroll', actualizar, { passive:true });
+  addEventListener('resize', actualizar);
+  actualizar();
+
+  // --- Al hacer clic se emociona y saluda más rápido ---
+  olaf.addEventListener('click', function(e){
+    e.stopPropagation();
+    olaf.classList.add('feliz');
+    globo.textContent = "¡Feliz Navidad! 🎄";
+    setTimeout(function(){ olaf.classList.remove('feliz'); globo.textContent = etapas[ultima].msg; }, 2500);
+  });
+})();
+</script>
+<!-- ===== HASTA AQUÍ (MUÑECO GRANDE HTML + JS) ===== -->
+
+</body>
+</html>

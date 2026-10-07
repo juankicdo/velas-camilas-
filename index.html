@@ -5,21 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catálogo de invierno</title>
 <style>
-  body{margin:0;font-family:Georgia,serif;--c1:#0e2238;--c2:#1b3d5e;background:#0e2238;color:#eef5fb;min-height:100vh}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Georgia,serif;--c1:#0e2238;--c2:#1b3d5e;background:#0e2238;color:#eef5fb;min-height:100vh;padding-bottom:140px}
   /* Fondo fijo que cambia con el scroll (funciona también en iPhone) */
   body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(var(--c1),var(--c2))}
   header{text-align:center;padding:48px 16px 16px}
   h1{margin:0;font-size:2.4rem;font-weight:normal;letter-spacing:.02em}
   header p{opacity:.75;margin:8px 0 0}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;max-width:1000px;margin:32px auto;padding:0 16px;position:relative;z-index:2}
-  .card{background:#f6fafd;color:#16283a;border-radius:10px;padding:18px;transition:transform .2s}
+  .card{background:#f6fafd;color:#16283a;border-radius:10px;padding:14px;transition:transform .2s}
   .card:hover{transform:translateY(-4px)}
-  .card .img{height:120px;border-radius:6px;background:#cfe0ee;margin-bottom:12px}
+
+  /* ===== IMÁGENES: cuadradas, sin deformar, recortadas con esquinas redondeadas ===== */
+  .card .img{aspect-ratio:1/1;border-radius:8px;background:#cfe0ee;margin-bottom:12px;overflow:hidden}
+  .card .img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .card:hover .img img{transform:scale(1.06)}
   .card h3{margin:0 0 4px;font-size:1.1rem}
   .card span{font-size:.95rem;opacity:.7}
+  /* En celular: 2 columnas para que las fotos se vean grandes y ordenadas */
+  @media(max-width:600px){
+    h1{font-size:1.9rem}
+    .grid{grid-template-columns:repeat(2,1fr);gap:12px;padding:0 12px}
+    .card{padding:10px}
+    .card h3{font-size:.95rem}
+  }
 
   /* ===== COPIA DESDE AQUÍ: NIEVE (CSS) ===== */
-  #nieve{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  #nieve{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
   #nieve-btn{position:fixed;right:16px;bottom:16px;z-index:10;border:0;border-radius:20px;padding:10px 16px;background:#fff;color:#16283a;cursor:pointer;font:inherit;box-shadow:0 2px 8px rgba(0,0,0,.3)}
   /* ===== HASTA AQUÍ (CSS) ===== */
 
@@ -44,7 +56,7 @@
   @keyframes rebote{50%{transform:translateY(-6px)}}
   #olaf-globo{position:absolute;bottom:100%;right:10px;width:150px;background:#fff;color:#16283a;font:.85rem/1.3 Georgia,serif;padding:8px 10px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.3);text-align:center;transition:opacity .3s}
   #olaf-globo::after{content:"";position:absolute;top:100%;right:28px;border:7px solid transparent;border-top-color:#fff}
-  @media(max-width:600px){#olaf{width:105px}#olaf-globo{width:120px;font-size:.75rem}body{padding-bottom:170px}}
+  @media(max-width:600px){#olaf{width:105px}#olaf-globo{width:120px;font-size:.75rem}body{padding-bottom:190px}}
   @media(prefers-reduced-motion:reduce){#olaf,#olaf .brazo{animation:none}}
   /* ===== HASTA AQUÍ (MUÑECO GRANDE CSS) ===== */
 </style>
@@ -57,46 +69,46 @@
 </header>
 
 <main class="grid">
- <div class="card"><div class="img"><img src="1.jpeg" alt="Set navideño 1"></div><h3>Set navideño 1</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="2.jpeg" alt="Set navideño 2"></div><h3>Set navideño 2</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="3.jpeg" alt="Set navideño 3"></div><h3>Set navideño 3</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="4.jpeg" alt="Set navideño 4"></div><h3>Set navideño 4</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="5.jpeg" alt="Set navideño 5"></div><h3>Set navideño 5</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="6.jpeg" alt="Set navideño 6"></div><h3>Set navideño 6</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="7.jpeg" alt="Set navideño 7"></div><h3>Set navideño 7</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="8.jpeg" alt="Set navideño 8"></div><h3>Set navideño 8</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="9.jpeg" alt="Set navideño 9"></div><h3>Set navideño 9</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="10.jpeg" alt="Set navideño 10"></div><h3>Set navideño 10</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="11.jpeg" alt="Set navideño 11"></div><h3>Set navideño 11</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="12.jpeg" alt="Set navideño 12"></div><h3>Set navideño 12</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="13.jpeg" alt="Set navideño 13"></div><h3>Set navideño 13</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="14.jpeg" alt="Set navideño 14"></div><h3>Set navideño 14</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="15.jpeg" alt="Set navideño 15"></div><h3>Set navideño 15</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="16.jpeg" alt="Set navideño 16"></div><h3>Set navideño 16</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="17.jpeg" alt="Set navideño 17"></div><h3>Set navideño 17</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="18.jpeg" alt="Set navideño 18"></div><h3>Set navideño 18</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="19.jpeg" alt="Set navideño 19"></div><h3>Set navideño 19</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="20.jpeg" alt="Set navideño 20"></div><h3>Set navideño 20</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="21.jpeg" alt="Set navideño 21"></div><h3>Set navideño 21</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="22.jpeg" alt="Set navideño 22"></div><h3>Set navideño 22</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="23.jpeg" alt="Set navideño 23"></div><h3>Set navideño 23</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="24.jpeg" alt="Set navideño 24"></div><h3>Set navideño 24</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="25.jpeg" alt="Set navideño 25"></div><h3>Set navideño 25</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="26.jpeg" alt="Set navideño 26"></div><h3>Set navideño 26</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="27.jpeg" alt="Set navideño 27"></div><h3>Set navideño 27</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="28.jpeg" alt="Set navideño 28"></div><h3>Set navideño 28</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="29.jpeg" alt="Set navideño 29"></div><h3>Set navideño 29</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="30.jpeg" alt="Set navideño 30"></div><h3>Set navideño 30</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="31.jpeg" alt="Set navideño 31"></div><h3>Set navideño 31</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="32.jpeg" alt="Set navideño 32"></div><h3>Set navideño 32</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="33.jpeg" alt="Set navideño 33"></div><h3>Set navideño 33</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="34.jpeg" alt="Set navideño 34"></div><h3>Set navideño 34</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="35.jpeg" alt="Set navideño 35"></div><h3>Set navideño 35</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="36.jpeg" alt="Set navideño 36"></div><h3>Set navideño 36</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="37.jpeg" alt="Set navideño 37"></div><h3>Set navideño 37</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="38.jpeg" alt="Set navideño 38"></div><h3>Set navideño 38</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="39.jpeg" alt="Set navideño 39"></div><h3>Set navideño 39</h3><span>$20.000</span></div>
-<div class="card"><div class="img"><img src="40.jpeg" alt="Set navideño 40"></div><h3>Set navideño 40</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="1.jpeg" alt="Set navideño 1" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 1</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="2.jpeg" alt="Set navideño 2" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 2</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="3.jpeg" alt="Set navideño 3" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 3</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="4.jpeg" alt="Set navideño 4" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 4</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="5.jpeg" alt="Set navideño 5" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 5</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="6.jpeg" alt="Set navideño 6" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 6</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="7.jpeg" alt="Set navideño 7" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 7</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="8.jpeg" alt="Set navideño 8" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 8</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="9.jpeg" alt="Set navideño 9" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 9</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="10.jpeg" alt="Set navideño 10" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 10</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="11.jpeg" alt="Set navideño 11" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 11</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="12.jpeg" alt="Set navideño 12" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 12</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="13.jpeg" alt="Set navideño 13" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 13</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="14.jpeg" alt="Set navideño 14" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 14</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="15.jpeg" alt="Set navideño 15" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 15</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="16.jpeg" alt="Set navideño 16" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 16</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="17.jpeg" alt="Set navideño 17" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 17</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="18.jpeg" alt="Set navideño 18" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 18</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="19.jpeg" alt="Set navideño 19" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 19</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="20.jpeg" alt="Set navideño 20" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 20</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="21.jpeg" alt="Set navideño 21" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 21</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="22.jpeg" alt="Set navideño 22" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 22</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="23.jpeg" alt="Set navideño 23" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 23</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="24.jpeg" alt="Set navideño 24" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 24</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="25.jpeg" alt="Set navideño 25" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 25</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="26.jpeg" alt="Set navideño 26" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 26</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="27.jpeg" alt="Set navideño 27" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 27</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="28.jpeg" alt="Set navideño 28" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 28</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="29.jpeg" alt="Set navideño 29" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 29</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="30.jpeg" alt="Set navideño 30" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 30</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="31.jpeg" alt="Set navideño 31" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 31</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="32.jpeg" alt="Set navideño 32" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 32</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="33.jpeg" alt="Set navideño 33" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 33</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="34.jpeg" alt="Set navideño 34" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 34</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="35.jpeg" alt="Set navideño 35" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 35</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="36.jpeg" alt="Set navideño 36" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 36</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="37.jpeg" alt="Set navideño 37" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 37</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="38.jpeg" alt="Set navideño 38" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 38</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="39.jpeg" alt="Set navideño 39" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 39</h3><span>$20.000</span></div>
+<div class="card"><div class="img"><img src="40.jpeg" alt="Set navideño 40" loading="lazy" decoding="async" onerror="this.style.display='none'"></div><h3>Set navideño 40</h3><span>$20.000</span></div>
 </main>
 
 <!-- ===== COPIA DESDE AQUÍ: NIEVE (HTML + JS) ===== -->
@@ -269,6 +281,8 @@
   }
   addEventListener('scroll', actualizar, { passive:true });
   addEventListener('resize', actualizar);
+  // las imágenes cargan después y cambian el alto de la página: recalcular
+  addEventListener('load', actualizar);
   actualizar();
 
   // --- Al hacer clic se emociona y saluda más rápido ---

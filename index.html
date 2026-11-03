@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,7 +77,8 @@ header p{
   color:#16283a;
   border-radius:10px;
   padding:14px;
-  transition:transform .2s
+  transition:transform .2s;
+  cursor:pointer
 }
 
 .card:hover{transform:translateY(-4px)}
@@ -309,6 +309,58 @@ header p{
     animation:none;
     transition:none
   }
+}
+
+/* VISOR DE FOTOS */
+#visor{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(5,12,22,.93);
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:16px
+}
+
+#visor.abierto{display:flex}
+
+#visor-img{
+  max-width:100%;
+  max-height:78vh;
+  border-radius:10px;
+  object-fit:contain;
+  box-shadow:0 8px 30px rgba(0,0,0,.5)
+}
+
+#visor-cap{
+  margin:14px 0 0;
+  text-align:center;
+  font-size:1rem
+}
+
+.v-btn{
+  position:absolute;
+  border:0;
+  border-radius:50%;
+  width:46px;
+  height:46px;
+  background:rgba(255,255,255,.9);
+  color:#16283a;
+  font-size:1.6rem;
+  line-height:1;
+  cursor:pointer
+}
+
+.v-cerrar{top:16px;right:16px}
+.v-prev{left:12px;top:50%;transform:translateY(-50%)}
+.v-next{right:12px;top:50%;transform:translateY(-50%)}
+
+@media(max-width:600px){
+  .v-btn{width:40px;height:40px}
+  .v-prev{left:6px}
+  .v-next{right:6px}
 }
 </style>
 </head>
@@ -749,13 +801,99 @@ header p{
 })();
 </script>
 
+<!-- LISTA DE VELAS -->
 <script>
-// Generar automáticamente los 65 productos
 (function(){
+  // ===== LISTA DE VELAS =====
+  // Para QUITAR una vela: borra su línea.
+  // Para AGREGAR una: copia una línea y cambia los datos.
+  // Formato: ['archivo de la foto', 'Nombre de la vela', 'precio']
+  // La ÚLTIMA línea de la lista NO lleva coma al final.
+  var velas=[
+    ['1.jpeg','Vela navideña 1','$20.000'],
+    ['2.jpeg','Vela navideña 2','$20.000'],
+    ['3.jpeg','Vela navideña 3','$20.000'],
+    ['4.jpeg','Vela navideña 4','$20.000'],
+    ['5.jpeg','Vela navideña 5','$20.000'],
+    ['6.jpeg','Vela navideña 6','$20.000'],
+    ['7.jpeg','Vela navideña 7','$20.000'],
+    ['8.jpeg','Vela navideña 8','$20.000'],
+    ['9.jpeg','Vela navideña 9','$20.000'],
+    ['10.jpeg','Vela navideña 10','$20.000'],
+    ['11.jpeg','Vela navideña 11','$20.000'],
+    ['12.jpeg','Vela navideña 12','$20.000'],
+    ['13.jpeg','Vela navideña 13','$20.000'],
+    ['14.jpeg','Vela navideña 14','$20.000'],
+    ['15.jpeg','Vela navideña 15','$20.000'],
+    ['16.jpeg','Vela navideña 16','$20.000'],
+    ['17.jpeg','Vela navideña 17','$20.000'],
+    ['18.jpeg','Vela navideña 18','$20.000'],
+    ['19.jpeg','Vela navideña 19','$20.000'],
+    ['20.jpeg','Vela navideña 20','$20.000'],
+    ['21.jpeg','Vela navideña 21','$20.000'],
+    ['22.jpeg','Vela navideña 22','$20.000'],
+    ['23.jpeg','Vela navideña 23','$20.000'],
+    ['24.jpeg','Vela navideña 24','$20.000'],
+    ['25.jpeg','Vela navideña 25','$20.000'],
+    ['26.jpeg','Vela navideña 26','$20.000'],
+    ['27.jpeg','Vela navideña 27','$20.000'],
+    ['28.jpeg','Vela navideña 28','$20.000'],
+    ['29.jpeg','Vela navideña 29','$20.000'],
+    ['30.jpeg','Vela navideña 30','$20.000'],
+    ['31.jpeg','Vela navideña 31','$20.000'],
+    ['32.jpeg','Vela navideña 32','$20.000'],
+    ['33.jpeg','Vela navideña 33','$20.000'],
+    ['34.jpeg','Vela navideña 34','$20.000'],
+    ['35.jpeg','Vela navideña 35','$20.000'],
+    ['36.jpeg','Vela navideña 36','$20.000'],
+    ['37.jpeg','Vela navideña 37','$20.000'],
+    ['38.jpeg','Vela navideña 38','$20.000'],
+    ['39.jpeg','Vela navideña 39','$20.000'],
+    ['40.jpeg','Vela navideña 40','$20.000'],
+    ['41.jpeg','Vela navideña 41','$20.000'],
+    ['42.jpeg','Vela navideña 42','$20.000'],
+    ['43.jpeg','Vela navideña 43','$20.000'],
+    ['44.jpeg','Vela navideña 44','$20.000'],
+    ['45.jpeg','Vela navideña 45','$20.000'],
+    ['46.jpeg','Vela navideña 46','$20.000'],
+    ['47.jpeg?v=2','Vela navideña 47','$20.000'],
+    ['48.jpeg','Vela navideña 48','$20.000'],
+    ['49.jpeg','Vela navideña 49','$20.000'],
+    ['50.jpeg','Vela navideña 50','$20.000'],
+    ['51.jpeg','Vela navideña 51','$20.000'],
+    ['52.jpeg','Vela navideña 52','$20.000'],
+    ['53.jpeg','Vela navideña 53','$20.000'],
+    ['54.jpeg','Vela navideña 54','$20.000'],
+    ['55.jpeg','Vela navideña 55','$20.000'],
+    ['56.jpeg','Vela navideña 56','$20.000'],
+    ['57.jpeg','Vela navideña 57','$20.000'],
+    ['58.jpeg','Vela navideña 58','$20.000'],
+    ['59.jpeg','Vela navideña 59','$20.000'],
+    ['60.jpeg','Vela navideña 60','$20.000'],
+    ['61.jpeg','Vela navideña 61','$20.000'],
+    ['62.jpeg','Vela navideña 62','$20.000'],
+    ['63.jpeg','Vela navideña 63','$20.000'],
+    ['64.jpeg','Vela navideña 64','$20.000'],
+    ['65.jpeg','Vela navideña 65','$20.000'],
+    ['66.jpeg','Vela navideña 66','$20.000'],
+    ['67.jpeg','Vela navideña 67','$20.000'],
+    ['68.jpeg','Vela navideña 68','$20.000'],
+    ['69.jpeg','Vela navideña 69','$20.000'],
+    ['70.jpeg','Vela navideña 70','$20.000'],
+    ['71.jpeg','Vela navideña 71','$20.000'],
+    ['72.jpeg','Vela navideña 72','$20.000'],
+    ['73.jpeg','Vela navideña 73','$20.000'],
+    ['74.jpeg','Vela navideña 74','$20.000'],
+    ['75.jpeg','Vela navideña 75','$20.000']
+
+
+
+  ];
+
   var catalogo=document.getElementById('catalogo');
   var fragment=document.createDocumentFragment();
 
-  for(var i=1;i<=65;i++){
+  velas.forEach(function(v){
     var card=document.createElement('div');
     card.className='card';
 
@@ -763,32 +901,114 @@ header p{
     imagen.className='img';
 
     var img=document.createElement('img');
-
-    // Evita la caché antigua de la foto 47
-    img.src=i===47?'47.jpeg?v=2':i+'.jpeg';
-    img.alt='Set navideño '+i;
+    img.src=v[0];
+    img.alt=v[1];
     img.loading='lazy';
     img.decoding='async';
-
+    // Si la foto no existe, se oculta toda la tarjeta
     img.onerror=function(){
-      this.style.display='none';
+      this.parentNode.parentNode.style.display='none';
     };
 
     var titulo=document.createElement('h3');
-    titulo.textContent='Set navideño '+i;
+    titulo.textContent=v[1];
 
     var precio=document.createElement('span');
-    precio.textContent='$20.000';
+    precio.textContent=v[2];
 
     imagen.appendChild(img);
     card.appendChild(imagen);
     card.appendChild(titulo);
     card.appendChild(precio);
-
     fragment.appendChild(card);
-  }
+  });
 
   catalogo.appendChild(fragment);
+})();
+</script>
+
+<!-- VISOR DE FOTOS (HTML) -->
+<div id="visor" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="v-btn v-cerrar" type="button" aria-label="Cerrar">✕</button>
+  <button class="v-btn v-prev" type="button" aria-label="Anterior">‹</button>
+  <img id="visor-img" alt="">
+  <button class="v-btn v-next" type="button" aria-label="Siguiente">›</button>
+  <p id="visor-cap"></p>
+</div>
+
+<!-- VISOR DE FOTOS (JavaScript) -->
+<script>
+(function(){
+  var catalogo=document.getElementById('catalogo');
+  var visor=document.getElementById('visor');
+  var vimg=document.getElementById('visor-img');
+  var cap=document.getElementById('visor-cap');
+  var lista=[];
+  var pos=0;
+
+  function visibles(){
+    return Array.prototype.slice
+      .call(catalogo.querySelectorAll('.card'))
+      .filter(function(c){ return c.style.display!=='none'; });
+  }
+
+  function mostrar(i){
+    pos=(i+lista.length)%lista.length;
+    var card=lista[pos];
+    var im=card.querySelector('img');
+    vimg.src=im.currentSrc||im.src;
+    vimg.alt=im.alt;
+    cap.textContent=
+      card.querySelector('h3').textContent+' · '+
+      card.querySelector('span').textContent+
+      '  ('+(pos+1)+' de '+lista.length+')';
+  }
+
+  function abrir(card){
+    lista=visibles();
+    mostrar(lista.indexOf(card));
+    visor.classList.add('abierto');
+    document.body.style.overflow='hidden';
+  }
+
+  function cerrar(){
+    visor.classList.remove('abierto');
+    document.body.style.overflow='';
+  }
+
+  catalogo.addEventListener('click',function(e){
+    var card=e.target.closest('.card');
+    if(!card) return;
+    e.stopPropagation();
+    abrir(card);
+  });
+
+  visor.addEventListener('click',function(e){
+    e.stopPropagation();
+    if(e.target.closest('.v-cerrar')) return cerrar();
+    if(e.target.closest('.v-prev')) return mostrar(pos-1);
+    if(e.target.closest('.v-next')) return mostrar(pos+1);
+    if(e.target!==vimg) cerrar(); // clic en el fondo cierra
+  });
+
+  addEventListener('keydown',function(e){
+    if(!visor.classList.contains('abierto')) return;
+    if(e.key==='Escape') cerrar();
+    if(e.key==='ArrowLeft') mostrar(pos-1);
+    if(e.key==='ArrowRight') mostrar(pos+1);
+  });
+
+  // Deslizar con el dedo en el celular
+  var x0=null;
+  visor.addEventListener('touchstart',function(e){
+    x0=e.touches[0].clientX;
+  },{passive:true});
+  visor.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50) mostrar(dx<0?pos+1:pos-1);
+    x0=null;
+  },{passive:true});
 })();
 </script>
 
